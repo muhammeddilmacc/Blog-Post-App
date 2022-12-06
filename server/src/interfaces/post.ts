@@ -5,6 +5,6 @@ export default interface IPost extends Document {
     title: string;
     author: IAdmin;
     content: string;
-    headline: string;
-    picture?: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
