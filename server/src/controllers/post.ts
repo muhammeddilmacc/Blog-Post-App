@@ -54,8 +54,44 @@ const createPost = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+
+const updatePost = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (post) {
+      post.title = req.body.title;
+      post.content = req.body.content;
+      post.updatedAt = new Date();
+      await post.save();
+      res.status(200).json({
+        message: "Post updated successfully",
+        post,
+      });
+    } else {
+      res.status(404).json({ message: "Post not found!" });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Fetching post failed!",
+    });
+  }
+};
+
+const deletePost = async (req: Request, res: Response, next: NextFunction) => {
+
+  try {
+
+  } catch (error) {
+    
+  }
+
+
+};
+
 export default {
   getPosts,
   getPost,
   createPost,
+  updatePost,
+  deletePost,
 };
